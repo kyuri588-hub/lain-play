@@ -1,0 +1,757 @@
+
+/* ========================================
+   LAIN PLAYER // GLOBAL STYLES
+======================================== */
+
+:root {
+    --main-color: #00ff66;
+    --main-color-dim: #00a844;
+    --background: #050706;
+    --panel-background: #080c09;
+    --border-color: #163c24;
+    --text-color: #d1ffdf;
+    --muted-color: #5d8c6b;
+    --danger-color: #ff3b3b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding-bottom: 150px;
+
+    background:
+        radial-gradient(
+            ellipse at top,
+            #0b1b10 0%,
+            var(--background) 65%
+        );
+
+    color: var(--text-color);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   THEMES
+======================================== */
+
+body[data-theme="blue"] {
+    --main-color: #00b7ff;
+    --main-color-dim: #006f9c;
+    --background: #05080d;
+    --panel-background: #080d15;
+    --border-color: #16334d;
+    --text-color: #d5f3ff;
+    --muted-color: #5b8198;
+}
+
+body[data-theme="red"] {
+    --main-color: #ff3b3b;
+    --main-color-dim: #a51f1f;
+    --background: #0d0505;
+    --panel-background: #130808;
+    --border-color: #4b1a1a;
+    --text-color: #ffe0e0;
+    --muted-color: #a66b6b;
+}
+
+/* ========================================
+   CRT SCANLINES
+======================================== */
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 100;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 0, 0, 0.08) 4px
+    );
+}
+
+/* ========================================
+   TOPBAR
+======================================== */
+
+.topbar {
+    height: 64px;
+
+    padding: 0 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border-color);
+
+    background: rgba(3, 7, 4, 0.8);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--main-color);
+}
+
+.logo-symbol {
+    font-size: 18px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--muted-color);
+    font-size: 11px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    background: var(--main-color);
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+/* ========================================
+   MAIN LAYOUT
+======================================== */
+
+.app-container {
+    width: min(1400px, 90%);
+    margin: 0 auto;
+    padding: 55px 0;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 24px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.page-heading {
+    padding: 10px 0 25px;
+}
+
+.eyebrow {
+    color: var(--main-color);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.page-heading h1 {
+    color: var(--main-color);
+
+    font-size: clamp(36px, 6vw, 80px);
+    line-height: 1;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 10px var(--main-color-dim);
+}
+
+.subtitle {
+    margin-top: 20px;
+    color: var(--muted-color);
+    font-size: 12px;
+}
+
+/* ========================================
+   PANELS
+======================================== */
+
+.terminal-panel {
+    background: var(--panel-background);
+
+    border: 1px solid var(--border-color);
+
+    padding: 20px;
+
+    box-shadow:
+        0 0 25px rgba(0, 0, 0, 0.15);
+
+    transition: border-color 0.2s;
+}
+
+.terminal-panel:hover {
+    border-color: var(--main-color-dim);
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid var(--border-color);
+
+    color: var(--main-color);
+
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.panel-tag {
+    color: var(--muted-color);
+}
+
+/* ========================================
+   IMPORT
+======================================== */
+
+.upload-panel {
+    min-height: 160px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: fit-content;
+
+    padding: 14px 20px;
+
+    border: 1px solid var(--main-color);
+
+    color: var(--main-color);
+
+    cursor: pointer;
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.upload-button:hover {
+    background: var(--main-color);
+    color: #000;
+}
+
+.hint {
+    margin-top: 16px;
+
+    color: var(--muted-color);
+    font-size: 11px;
+}
+
+/* ========================================
+   PLAYLIST
+======================================== */
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    padding: 40px 10px;
+
+    text-align: center;
+    color: var(--muted-color);
+}
+
+.empty-icon {
+    font-size: 25px;
+    color: var(--main-color);
+}
+
+.empty-state p {
+    font-size: 12px;
+}
+
+.empty-state small {
+    font-size: 10px;
+}
+
+.track-item {
+    display: grid;
+    grid-template-columns: 35px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+
+    border: 1px solid transparent;
+
+    cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+.track-item:hover {
+    background: rgba(255, 255, 255, 0.025);
+    border-color: var(--border-color);
+}
+
+.track-item.active {
+    background: rgba(0, 255, 102, 0.04);
+    border-color: var(--main-color-dim);
+}
+
+.track-number {
+    color: var(--muted-color);
+    font-size: 11px;
+}
+
+.track-item.active .track-number {
+    color: var(--main-color);
+}
+
+.track-name {
+    color: var(--text-color);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-size {
+    color: var(--muted-color);
+    font-size: 10px;
+}
+
+.remove-track {
+    border: none;
+    background: none;
+
+    color: var(--muted-color);
+
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.remove-track:hover {
+    color: var(--danger-color);
+}
+
+/* ========================================
+   VISUALIZER
+======================================== */
+
+.visualizer-panel {
+    overflow: hidden;
+}
+
+#visualizer {
+    display: block;
+
+    width: 100%;
+    height: 180px;
+
+    background: #020403;
+    border: 1px solid var(--border-color);
+}
+
+.visualizer-footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 10px;
+
+    color: var(--muted-color);
+    font-size: 9px;
+}
+
+/* ========================================
+   THEMES
+======================================== */
+
+.theme-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.theme-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--border-color);
+    background: transparent;
+
+    color: var(--muted-color);
+
+    font-family: inherit;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.theme-button:hover,
+.theme-button.active {
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+.color-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.color-dot.green {
+    background: #00ff66;
+}
+
+.color-dot.blue {
+    background: #00b7ff;
+}
+
+.color-dot.red {
+    background: #ff3b3b;
+}
+
+/* ========================================
+   SIDE PANEL
+======================================== */
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.system-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    font-size: 10px;
+    color: var(--muted-color);
+}
+
+.system-info span {
+    color: var(--main-color);
+}
+
+.quote {
+    color: var(--muted-color);
+
+    font-size: 11px;
+    line-height: 2;
+
+    white-space: pre-line;
+}
+
+.quote-author {
+    margin-top: 20px;
+
+    color: var(--main-color);
+    font-size: 10px;
+}
+
+/* ========================================
+   MINI PLAYER
+======================================== */
+
+.mini-player {
+    position: fixed;
+
+    z-index: 110;
+
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+
+    min-height: 95px;
+
+    display: grid;
+    grid-template-columns: 1.2fr auto 2fr auto;
+    align-items: center;
+    gap: 25px;
+
+    padding: 16px 22px;
+
+    background: rgba(5, 10, 6, 0.97);
+
+    border: 1px solid var(--main-color-dim);
+
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.mini-track-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.mini-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid var(--border-color);
+
+    color: var(--main-color);
+    font-size: 22px;
+}
+
+.track-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    min-width: 0;
+}
+
+#currentTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--main-color);
+
+    font-size: 11px;
+}
+
+#currentArtist {
+    color: var(--muted-color);
+    font-size: 10px;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-button {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border-color);
+
+    background: transparent;
+    color: var(--main-color);
+
+    font-family: inherit;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.control-button:hover {
+    background: var(--main-color);
+    color: #000;
+}
+
+.play-button {
+    width: 42px;
+    height: 42px;
+
+    border-color: var(--main-color);
+}
+
+.progress-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+
+    color: var(--muted-color);
+    font-size: 10px;
+}
+
+.progress-area input {
+    flex: 1;
+    min-width: 50px;
+}
+
+.volume-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--muted-color);
+    font-size: 10px;
+}
+
+input[type="range"] {
+    accent-color: var(--main-color);
+    cursor: pointer;
+}
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-color);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1000px) {
+
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mini-player {
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+    }
+
+    .progress-area {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .volume-area {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .app-container {
+        width: 92%;
+        padding-top: 30px;
+    }
+
+    .terminal-panel {
+        padding: 15px;
+    }
+
+    .side-panel {
+        display: flex;
+    }
+
+    .mini-player {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+
+        padding: 12px;
+
+        grid-template-columns: 1fr auto;
+    }
+
+    .mini-art {
+        width: 40px;
+        height: 40px;
+    }
+
+    .player-controls {
+        gap: 5px;
+    }
+
+    .control-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .play-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .progress-area {
+        gap: 6px;
+    }
+
+    .track-size {
+        display: none;
+    }
+
+    .page-heading h1 {
+        font-size: 38px;
+    }
+
+}
